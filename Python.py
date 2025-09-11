@@ -120,3 +120,40 @@ if p_value < alpha:
     print("Result: Reject null hypothesis. ")
 else:
     print("Result: Fail to reject null hypothesis. ")
+
+
+# -------------------------------------
+# Visualizations
+# -------------------------------------
+
+# Plot: Landing times after sunset
+plt.figure()
+sns.histplot(dataset1['hours_after_sunset'], kde=True)
+plt.title('Distribution of bat Landing After Sunset')
+plt.xlabel('Hours After Sunset')
+plt.ylabel('No. of bats landing ')
+
+# Scatter: Food availability vs rat presence
+plt.figure()
+sns.scatterplot(x='rat_minutes', y='food_availability', data=dataset2)
+plt.title('Food Availability vs Rat Presence')
+plt.xlabel('Rat Minutes')
+plt.ylabel('Food Availability')
+
+# Scatter: Bat landings vs rat minutes
+plt.figure()
+sns.scatterplot(x='rat_minutes', y='bat_landing_number', data=dataset2)
+plt.title('Bat Landings vs Rat Presence')
+plt.xlabel('Rat Minutes')
+plt.ylabel('Bat Landings')
+
+# Proportion of risk-taking by season
+season_risk = pd.crosstab(dataset1['season'], dataset1['risk'], normalize='index')
+
+# Stacked bar plot for risk-taking proportion by season
+season_risk.plot(kind='bar', stacked=True, colormap='viridis')
+plt.title("Proportion of Risk-Taking by Season")
+plt.ylabel("Proportion")
+plt.xlabel("Season")
+plt.legend(title="Risk Behavior (0 = Avoid, 1 = Take)", loc='upper right')
+plt.tight_layout()
