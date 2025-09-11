@@ -157,3 +157,31 @@ plt.ylabel("Proportion")
 plt.xlabel("Season")
 plt.legend(title="Risk Behavior (0 = Avoid, 1 = Take)", loc='upper right')
 plt.tight_layout()
+# Reward rates by risk
+reward_rate_by_risk = dataset1.groupby('risk')['reward'].mean()
+print("\nAverage Reward Rate by Risk Behavior:")
+print(reward_rate_by_risk)
+
+# Barplot: Average reward by risk behavior
+plt.figure()
+sns.barplot(x=reward_rate_by_risk.index, y=reward_rate_by_risk.values, hue=reward_rate_by_risk.index, legend=False, palette='pastel')
+plt.title("Average Reward by Risk Behavior")
+plt.xlabel("Risk Behavior (0 = Avoid, 1 = Take)")
+plt.ylabel("Average Reward")
+plt.tight_layout()
+
+# Reward by season
+reward_rate_by_season = dataset1.groupby('season')['reward'].mean()
+print("\nAverage Reward Rate by Season:")
+print(reward_rate_by_season)
+
+# Barplot: Average reward by season
+plt.figure()
+sns.barplot(x=reward_rate_by_season.index, y=reward_rate_by_season.values, hue=reward_rate_by_season.index, legend=False, palette='viridis')
+plt.title("Average Reward by Season")
+plt.xlabel("Season")
+plt.ylabel("Average Reward")
+plt.tight_layout()
+
+
+plt.show()
